@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { ApiRestService } from '../../services/api-rest.service';
 
 @Component({
   selector: 'app-personas',
@@ -7,9 +8,11 @@ import { Component, OnInit } from '@angular/core';
 })
 export class PersonasComponent implements OnInit {
 
-  constructor() { }
+  saludo!:string;
+  constructor(private apiRestService: ApiRestService) { }
 
   ngOnInit(): void {
+    this.saludo = this.apiRestService.saludar();
   }
 
 }
