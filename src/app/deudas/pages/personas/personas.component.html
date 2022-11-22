@@ -42,13 +42,18 @@
         >
           Registrar
         </button>
+        <button
+          class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline modal-action"
+          type="button"
+          (click)="cerrarModa()"
+        >
+          Cancelar
+        </button>
       </div>
       <!-- <div class="modal-action">
         <label for="my-modal"  class="btn">Yay!</label>
       </div> -->
     </form>
-
-   
   </div>
 </div>
 
@@ -60,14 +65,17 @@
         <th>id</th>
         <th>nombre</th>
         <th>Telefono</th>
+        <th> - </th>
       </tr>
     </thead>
     <tbody>
       <!-- row 1 -->
       <tr *ngFor="let persona of personas">
         <th>{{persona.id}}</th>
-        <td>{{persona.name}}</td>
+        <td> {{persona.name}}</td>
         <td>{{persona.telefono}}</td>
+
+        <td><label for="my-modal" (click)="editarPersona(persona.id)" class="btn">Editar</label></td>
       </tr> 
     </tbody>
   </table>
