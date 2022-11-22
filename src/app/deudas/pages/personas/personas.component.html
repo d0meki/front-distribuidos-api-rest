@@ -1,18 +1,74 @@
-<label for="my-modal" class="btn">Registrar Persona</label>
+<!-- The button to open modal -->
+<label for="my-modal" (click)="abrirModal()" class="btn">open modal</label>
 
 <!-- Put this part before </body> tag -->
 <input type="checkbox" id="my-modal" class="modal-toggle" />
-<div class="modal">
+<div *ngIf="isVisible" class="modal">
   <div class="modal-box">
-    <h3 class="font-bold text-lg">Congratulations random Internet user!</h3>
-    <!-- aqui el form -->
+    <h3 class="font-bold text-lg">Persona!</h3>
+    <form class="bg-white shadow-md rounded px-8 pt-6 pb-8 mb-4" [formGroup]="personForm" (ngSubmit)="registrarPersona()" >
+      <div class="mb-4">
+        <label
+          class="block text-gray-700 text-sm font-bold mb-1"
+          for="username"
+        >
+          Nombre
+        </label>
+        <input
+          class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
+          type="text"
+          placeholder="name"
+          formControlName="name"
+        />
+      </div>
+      <div class="mb-4">
+        <label
+          class="block text-gray-700 text-sm font-bold mb-2"
+          for="username"
+        >
+          Telefono
+        </label>
+        <input
+          class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
+          type="text"
+          formControlName="telefono"
+          placeholder="Telefono"
+        />
+      </div>
+      <div class="flex items-center justify-between">
+        <button
+          class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline modal-action"
+          type="submit"
+        >
+          Registrar
+        </button>
+      </div>
+      <!-- <div class="modal-action">
+        <label for="my-modal"  class="btn">Yay!</label>
+      </div> -->
+    </form>
 
-    <p class="py-4">You've been selected for a chance to get one year of subscription to use Wikipedia for free!</p>
-    <br>
-    <span class="bg-red-100 text-red-800 text-xs font-semibold mr-2 px-2.5 py-0.5 rounded dark:bg-red-200 dark:text-red-900">Red</span>
-     <!-- fin del form -->
-    <div class="modal-action">
-      <label for="my-modal" class="btn">Yay!</label>
-    </div>
+   
   </div>
+</div>
+
+<div class="overflow-x-auto mt-3">
+  <table class="table w-full">
+    <!-- head -->
+    <thead>
+      <tr>
+        <th>id</th>
+        <th>nombre</th>
+        <th>Telefono</th>
+      </tr>
+    </thead>
+    <tbody>
+      <!-- row 1 -->
+      <tr *ngFor="let persona of personas">
+        <th>{{persona.id}}</th>
+        <td>{{persona.name}}</td>
+        <td>{{persona.telefono}}</td>
+      </tr> 
+    </tbody>
+  </table>
 </div>

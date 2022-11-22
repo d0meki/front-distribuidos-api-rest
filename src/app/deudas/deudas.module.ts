@@ -6,6 +6,7 @@ import { ListaDeudasComponent } from './pages/lista-deudas/lista-deudas.componen
 import { PersonasComponent } from './pages/personas/personas.component';
 import { DrawerComponent } from './pages/drawer/drawer.component';
 import { HomeComponent } from './home/home.component';
+import { ReactiveFormsModule } from '@angular/forms';
 
 
 @NgModule({
@@ -17,7 +18,8 @@ import { HomeComponent } from './home/home.component';
   ],
   imports: [
     CommonModule,
-    DeudasRoutingModule
+    DeudasRoutingModule,
+    ReactiveFormsModule
   ]
 })
 export class DeudasModule { }
