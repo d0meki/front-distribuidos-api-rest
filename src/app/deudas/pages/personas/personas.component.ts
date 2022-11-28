@@ -10,9 +10,11 @@ import { Persona } from '../../interfaces/persona.interface';
 })
 export class PersonasComponent implements OnInit {
   isVisible:boolean = false;
-  personForm: FormGroup
+  personForm: FormGroup;
   personas!:Persona[];
+  id:number | undefined;
   constructor(private apiRestService: ApiRestService,private formBuilder:FormBuilder) {
+    this.id = -1;
     this.personForm = this.formBuilder.group({
       name: ['',[Validators.required]],
       telefono: ['',Validators.required],
@@ -32,13 +34,25 @@ export class PersonasComponent implements OnInit {
   }
 
   registrarPersona(){
+
     
-    if (this.personForm.valid) {
-      this.apiRestService.registrarPersona(this.personForm.value).subscribe(res => {
-        this.personas.push(res);
-      });
+    
+    if (this.personForm.valid && this.id === -1) {
+      // this.apiRestService.registrarPersona(this.personForm.value).subscribe(res => {
+      //   this.personas.push(res);
+      // });
+    }else{
+       console.log('Llamar al servicio y editar: ',this.id);
+       
     }
+    
     this.cerrarModa();
+  }
+
+  editarPersona(id:number | undefined){
+    this.id = id;
+    console.log(this.id);
+    this.abrirModal();
   }
 
 }
