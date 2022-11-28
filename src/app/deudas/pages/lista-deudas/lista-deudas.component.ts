@@ -1,4 +1,7 @@
 import { Component, OnInit } from '@angular/core';
+import { FormBuilder } from '@angular/forms';
+import { Deuda } from '../../interfaces/deudas.interface';
+import { ApiRestService } from '../../services/api-rest.service';
 
 @Component({
   selector: 'app-lista-deudas',
@@ -7,9 +10,13 @@ import { Component, OnInit } from '@angular/core';
 })
 export class ListaDeudasComponent implements OnInit {
 
-  constructor() { }
+  deudas!: Deuda[];
+  constructor(private apiRestService: ApiRestService, private formBuilder: FormBuilder) { }
 
   ngOnInit(): void {
+    this.apiRestService.listarDeudas().subscribe(res => {
+      this.deudas = res;
+    })
   }
 
 }
