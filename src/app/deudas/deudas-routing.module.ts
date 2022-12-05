@@ -4,6 +4,7 @@ import { HomeComponent } from './home/home.component';
 import { ListaDeudasComponent } from './pages/lista-deudas/lista-deudas.component';
 import { PersonasComponent } from './pages/personas/personas.component';
 import { DrawerComponent } from './pages/drawer/drawer.component';
+import { CrearDeudasComponent } from './pages/crear-deudas/crear-deudas.component';
 
 const routes: Routes = [
   {
@@ -17,6 +18,10 @@ const routes: Routes = [
       {
         path:'lista',
         component: ListaDeudasComponent
+      },
+      {
+        path:'crear',
+        component: CrearDeudasComponent
       },
       {
         path:'personas',

@@ -1,0 +1,112 @@
+
+<!-- The button to open modal -->
+<label for="my-modal-4" class="btn">open modal</label>
+
+<!-- Put this part before </body> tag -->
+<input type="checkbox" id="my-modal-4" class="modal-toggle" />
+<label for="my-modal-4" class="modal cursor-pointer">
+    <div class="modal-box">
+        <h3 class="font-bold text-lg">Persona!</h3>
+        <form class="bg-white shadow-md rounded px-8 pt-6 pb-8 mb-4" [formGroup]="deudaForm" (ngSubmit)="registrarDeuda()" >
+          <div class="mb-4">
+            <label
+              class="block text-gray-700 text-sm font-bold mb-1"
+              for="fecha"
+            >
+              Fecha
+            </label>
+            <input
+              class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
+              type="date"
+              placeholder="fecha"
+              formControlName="fecha_creacion"
+            />
+          </div>
+          <div class="mb-4">
+            <label
+              class="block text-gray-700 text-sm font-bold mb-1"
+              for="vencimiento"
+            >
+              Vencimiento
+            </label>
+            <input
+              class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
+              type="date"
+              placeholder="Vencimiento"
+              formControlName="fecha_vencimiento"
+            />
+          </div>
+          <div class="mb-4">
+            <label
+              class="block text-gray-700 text-sm font-bold mb-1"
+              for="usuario"
+            >
+                Usuario
+            </label>
+            <input
+              class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
+              type="text"
+              placeholder="Usuario"
+              formControlName="persona_id"
+            />
+          </div>
+          <div class="mb-4">
+            <label
+              class="block text-gray-700 text-sm font-bold mb-1"
+              for="titulo"
+            >
+                Titulo
+            </label>
+            <input
+              class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
+              type="text"
+              placeholder="Titulo"
+              formControlName="titulo"
+            />
+          </div>
+          <div class="flex items-center justify-between">
+            <button
+              class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline modal-action"
+              type="submit"
+            >
+              Registrar
+            </button>
+            <button
+              class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline modal-action"
+              type="button"
+              (click)="cerrarModa()"
+            >
+              Cancelar
+            </button>
+          </div>
+        </form>
+      </div>
+</label>
+
+
+<div class="overflow-x-auto mt-3">
+  <table class="table w-full">
+    <!-- head -->
+    <thead>
+      <tr>
+        <th>id</th>
+        <th>fecha</th>
+        <th>vencimiento</th>
+        <th>estado</th>
+        <th>deudor</th>
+        <th>titulo</th>
+        <th>total</th>
+      </tr>
+    </thead>
+    <tbody>
+      <!-- row 1 -->
+      <!-- <tr *ngFor="let persona of personas">
+        <th>{{persona.id}}</th>
+        <td> {{persona.name}}</td>
+        <td>{{persona.telefono}}</td>
+
+        <td><label for="my-modal" (click)="editarPersona(persona.id)" class="btn">Editar</label></td>
+      </tr>  -->
+    </tbody>
+  </table>
+</div>

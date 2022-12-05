@@ -29,5 +29,8 @@ export class ApiRestService {
   deudaPorIdUsuario(id:number):Observable<Deuda[]>{
     return  this.http.get<Deuda[]>('http://localhost:8080/deuda/mydeuda/'+id);
   }
+  listaDeuda(id:number):Observable<Deuda[]>{
+    return  this.http.get<Deuda[]>('http://localhost:8080/deuda/listardeudas');
+  }
 
 }

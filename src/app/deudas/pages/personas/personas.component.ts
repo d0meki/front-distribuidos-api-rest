@@ -28,9 +28,9 @@ export class PersonasComponent implements OnInit {
    }
  
   ngOnInit(): void {
-    this.apiRestService.listarPersonas().subscribe(res => {
-        this.personas = res;
-    })
+    // this.apiRestService.listarPersonas().subscribe(res => {
+    //     this.personas = res;
+    // })
   }
 
   registrarPersona(){

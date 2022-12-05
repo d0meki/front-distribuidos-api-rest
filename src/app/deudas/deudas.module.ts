@@ -7,6 +7,7 @@ import { PersonasComponent } from './pages/personas/personas.component';
 import { DrawerComponent } from './pages/drawer/drawer.component';
 import { HomeComponent } from './home/home.component';
 import { ReactiveFormsModule } from '@angular/forms';
+import { CrearDeudasComponent } from './pages/crear-deudas/crear-deudas.component';
 
 
 @NgModule({
@@ -14,7 +15,8 @@ import { ReactiveFormsModule } from '@angular/forms';
     ListaDeudasComponent,
     PersonasComponent,
     DrawerComponent,
-    HomeComponent
+    HomeComponent,
+    CrearDeudasComponent
   ],
   imports: [
     CommonModule,
