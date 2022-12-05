@@ -2,10 +2,12 @@ import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Observable, Subject } from 'rxjs';
 import { Persona } from '../interfaces/persona.interface';
+import { Deuda } from '../interfaces/deudas.interface';
 @Injectable({
   providedIn: 'root'
 })
 export class ApiRestService {
+  private url:string = 'http://localhost:8080/'
   private personas: Persona[];
   private personas$: Subject<Persona[]>;
 
@@ -20,6 +22,12 @@ export class ApiRestService {
 
   listarPersonas():Observable<Persona[]>{
     return  this.http.get<Persona[]>('http://localhost:8080/persona/listarpersonas');
+  }
+  buscarPersonaPorCi(ci:string):Observable<Persona[]>{
+    return  this.http.get<Persona[]>('http://localhost:8080/persona/persona-ci/'+ci);
+  }
+  deudaPorIdUsuario(id:number):Observable<Deuda[]>{
+    return  this.http.get<Deuda[]>('http://localhost:8080/deuda/mydeuda/'+id);
   }
 
 }
