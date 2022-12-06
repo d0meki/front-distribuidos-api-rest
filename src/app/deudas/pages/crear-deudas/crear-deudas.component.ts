@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { FormBuilder, FormGroup, Validators,FormArray, FormControl } from '@angular/forms';
+import { Deuda } from '../../interfaces/deudas.interface';
 import { ApiRestService } from '../../services/api-rest.service';
 
 @Component({
@@ -10,31 +11,55 @@ import { ApiRestService } from '../../services/api-rest.service';
 export class CrearDeudasComponent implements OnInit {
   isVisible:boolean = false;
   deudaForm:FormGroup;
+  deudas!:Deuda[];
   constructor(private apiRestService: ApiRestService,private formBuilder:FormBuilder) { 
     this.deudaForm = this.formBuilder.group({
-      fecha_creacion: ['',[Validators.required]],
-      fecha_vencimiento: ['',Validators.required],
+      fecha_creacion: [ new Date ,[Validators.required]],
+      fecha_vencimiento: [new Date,Validators.required],
       pagado: false,
-      persona_id: ['',Validators.required],
+      persona_id: [0,Validators.required],
       titulo: ['',Validators.required],
       total:0,
+      detalle: new FormArray([],Validators.required)
     })
+  }
+  initFormDetalle():FormGroup{
+    return new FormGroup({
+      concepto_id: new FormControl(''),
+      monto:new FormControl(0),
+    });
+  }
+  addDetalles():void{
+    const refDetalle = this.deudaForm.get('detalle') as FormArray;
+    refDetalle.push(this.initFormDetalle());
+  }
+
+  getCtrl(key:string,form:FormGroup):any{
+    return form.get(key);
   }
 
   ngOnInit(): void {
   }
 
-  abrirModal(){
-    this.isVisible = true;
-   }
-   cerrarModa(){
-    this.isVisible = false;
+   getDeudas(){
+    console.log("Precioné boton de ver Deudas");
+    
+    this.apiRestService.listaDeuda().subscribe(res => {
+      this.deudas = res;
+      console.log(this.deudas);
+    })
    }
    registrarDeuda(){
-      console.log(this.deudaForm);
-      
+      console.log("Ingresando a Registrar Deuda");
       if (this.deudaForm.valid) {
-        console.log(this.deudaForm.value);
+        this.apiRestService.crearDeuda(this.deudaForm.value).subscribe(response =>{
+          console.log(response);
+          //console.log(this.deudaForm.value.detalle)
+          // this.deudaForm.value.detalle.forEach((detalle) =>{
+            
+          // })
+          
+        })
       }
    }
 }
