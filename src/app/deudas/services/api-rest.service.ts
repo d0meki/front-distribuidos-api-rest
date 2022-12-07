@@ -3,6 +3,7 @@ import { HttpClient } from '@angular/common/http';
 import { Observable, Subject } from 'rxjs';
 import { Persona } from '../interfaces/persona.interface';
 import { Deuda } from '../interfaces/deudas.interface';
+import { DetalleDeuda } from '../interfaces/detalleDeuda.interface';
 @Injectable({
   providedIn: 'root'
 })
@@ -35,6 +36,8 @@ export class ApiRestService {
   crearDeuda(deuda:Deuda):Observable<Deuda>{
     return this.http.post<Deuda>('http://localhost:8080/deuda/creardeuda',deuda);
   }
-  
+  crearDetalleDeuda(detalleDeuda:DetalleDeuda):Observable<Deuda>{
+    return this.http.post<DetalleDeuda>('http://localhost:8080/detalle-deuda/crear',detalleDeuda);
+  }
 
 }
