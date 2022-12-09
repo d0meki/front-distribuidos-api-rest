@@ -40,15 +40,7 @@ export class CrearDeudasComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    let items = ['a', 'b', 'c']
-    let i = 0;
-    (function loopIt(i) {
-      setTimeout(function () {
-        // your code handling here
-        console.log(items[i]);
-        if (i < items.length - 1) loopIt(i + 1)
-      }, 2000);
-    })(i)
+  
   }
 
   getDeudas() {
@@ -61,17 +53,30 @@ export class CrearDeudasComponent implements OnInit {
   }
   registrarDeuda() {
     if (this.deudaForm.valid) {
-      this.apiRestService.crearDeuda(this.deudaForm.value).subscribe(response => {
-        console.log(response);
-        this.deudaForm.value.detalle.forEach((detalle: DetalleDeuda) => {
-          detalle.deuda_id = response.id;
+      this.deudaForm.value.total = this.totalDeuda();
 
-          this.apiRestService.crearDetalleDeuda(detalle).subscribe(respuesta => {
-            console.log(respuesta);
-          })
+      // this.apiRestService.crearDeuda(this.deudaForm.value).subscribe(response => {
+      //   console.log(response);
+      //   this.deudaForm.value.detalle.forEach((detalle: DetalleDeuda,i:number) => {
+      //     detalle.deuda_id = response.id;
+      //     setTimeout(() => {
+      //       this.apiRestService.crearDetalleDeuda(detalle).subscribe(respuesta => {
+      //         console.log(respuesta);
+      //       })
+      //     }, i * 3000);
+      //   })
+      // })
 
-        })
-      })
+      console.log(this.deudaForm.value);
+      
     }
+  }
+
+  totalDeuda():number{
+    let total = 0;
+    this.deudaForm.value.detalle.forEach((detalle: DetalleDeuda,i:number) => {
+      total += detalle.monto!;
+    })
+    return total;
   }
 }
