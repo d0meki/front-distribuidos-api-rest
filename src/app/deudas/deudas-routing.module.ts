@@ -5,6 +5,7 @@ import { ListaDeudasComponent } from './pages/lista-deudas/lista-deudas.componen
 import { PersonasComponent } from './pages/personas/personas.component';
 import { DrawerComponent } from './pages/drawer/drawer.component';
 import { CrearDeudasComponent } from './pages/crear-deudas/crear-deudas.component';
+import { PagosComponent } from './pages/pagos/pagos.component';
 
 const routes: Routes = [
   {
@@ -26,6 +27,10 @@ const routes: Routes = [
       {
         path:'personas',
         component: PersonasComponent
+      },
+      {
+        path:'pagos',
+        component: PagosComponent
       },
       {
         path:'**',

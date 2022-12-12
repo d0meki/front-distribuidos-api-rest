@@ -4,6 +4,7 @@ import { Observable, Subject } from 'rxjs';
 import { Persona } from '../interfaces/persona.interface';
 import { Deuda } from '../interfaces/deudas.interface';
 import { DetalleDeuda } from '../interfaces/detalleDeuda.interface';
+import { Pago } from '../interfaces/Pago.interface';
 @Injectable({
   providedIn: 'root'
 })
@@ -20,7 +21,6 @@ export class ApiRestService {
   registrarPersona(persona:Persona):Observable<Persona>{
       return this.http.post<Persona>('http://localhost:8080/persona/crearpersona',persona);
   }
-
   listarPersonas():Observable<Persona[]>{
     return  this.http.get<Persona[]>('http://localhost:8080/persona/listarpersonas');
   }
@@ -30,6 +30,9 @@ export class ApiRestService {
   deudaPorIdUsuario(id:number):Observable<Deuda[]>{
     return  this.http.get<Deuda[]>('http://localhost:8080/deuda/mydeuda/'+id);
   }
+  deudaPagadaUsuario(id:number):Observable<Deuda[]>{
+    return  this.http.get<Deuda[]>('http://localhost:8080/deuda/historial/'+id);
+  }
   listaDeuda():Observable<Deuda[]>{
     return  this.http.get<Deuda[]>('http://localhost:8080/deuda/listardeudas');
   }
@@ -38,6 +41,15 @@ export class ApiRestService {
   }
   crearDetalleDeuda(detalleDeuda:DetalleDeuda):Observable<Deuda>{
     return this.http.post<DetalleDeuda>('http://localhost:8080/detalle-deuda/crear',detalleDeuda);
+  }
+  getDetalleDeuda(id:number):Observable<DetalleDeuda[]>{
+    return  this.http.get<DetalleDeuda[]>('http://localhost:8080/detalle-deuda/detalle-id/'+id);
+  }
+  getPago(id:number):Observable<Pago>{
+    return this.http.get<Pago>('http://localhost:8080/pago/mypago/'+id);
+  }
+  realizarPago(pago:any){
+    return  this.http.post<any[]>('http://localhost:8080/pago/crearpago',pago);
   }
 
 }

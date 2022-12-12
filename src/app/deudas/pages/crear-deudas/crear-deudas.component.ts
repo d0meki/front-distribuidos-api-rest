@@ -55,17 +55,16 @@ export class CrearDeudasComponent implements OnInit {
     if (this.deudaForm.valid) {
       this.deudaForm.value.total = this.totalDeuda();
 
-      // this.apiRestService.crearDeuda(this.deudaForm.value).subscribe(response => {
-      //   console.log(response);
-      //   this.deudaForm.value.detalle.forEach((detalle: DetalleDeuda,i:number) => {
-      //     detalle.deuda_id = response.id;
-      //     setTimeout(() => {
-      //       this.apiRestService.crearDetalleDeuda(detalle).subscribe(respuesta => {
-      //         console.log(respuesta);
-      //       })
-      //     }, i * 3000);
-      //   })
-      // })
+      this.apiRestService.crearDeuda(this.deudaForm.value).subscribe(response => {
+        this.deudaForm.value.detalle.forEach((detalle: DetalleDeuda,i:number) => {
+          detalle.deuda_id = response.id;
+          setTimeout(() => {
+            this.apiRestService.crearDetalleDeuda(detalle).subscribe(respuesta => {
+              console.log(respuesta);
+            })
+          }, i * 3000);
+        })
+      })
 
       console.log(this.deudaForm.value);
       

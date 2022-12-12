@@ -8,6 +8,7 @@ import { DrawerComponent } from './pages/drawer/drawer.component';
 import { HomeComponent } from './home/home.component';
 import { ReactiveFormsModule } from '@angular/forms';
 import { CrearDeudasComponent } from './pages/crear-deudas/crear-deudas.component';
+import { PagosComponent } from './pages/pagos/pagos.component';
 
 
 @NgModule({
@@ -16,7 +17,8 @@ import { CrearDeudasComponent } from './pages/crear-deudas/crear-deudas.componen
     PersonasComponent,
     DrawerComponent,
     HomeComponent,
-    CrearDeudasComponent
+    CrearDeudasComponent,
+    PagosComponent
   ],
   imports: [
     CommonModule,
