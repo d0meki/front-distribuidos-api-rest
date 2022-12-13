@@ -35,7 +35,7 @@ export class ListaDeudasComponent implements OnInit {
   pagar(persona_id:number,deuda_id:number,monto:number){
     let fecha = new Date();
     const pago = {
-      fecha: this.formatDate(fecha),
+      fecha_pago: new Date,
       deuda_id:deuda_id,
       persona_id:persona_id,
       monto:monto
@@ -48,7 +48,7 @@ export class ListaDeudasComponent implements OnInit {
       pago,
       deuda
     }
-    //console.log(pago);
+    console.log(pago);
     
     this.apiRestService.realizarPago(pagar).subscribe(r => {
       console.log(r);

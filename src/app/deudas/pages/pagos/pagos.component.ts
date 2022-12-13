@@ -30,6 +30,7 @@ export class PagosComponent implements OnInit {
       this.pago = pago;
     });
   }
+ 
 
   buscarPersona(){
       if (this.ciForm.valid) {
