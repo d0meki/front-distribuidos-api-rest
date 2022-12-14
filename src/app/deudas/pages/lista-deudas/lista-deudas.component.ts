@@ -5,6 +5,8 @@ import { ApiRestService } from '../../services/api-rest.service';
 import { Persona } from '../../interfaces/persona.interface';
 import { DetalleDeuda } from '../../interfaces/detalleDeuda.interface';
 import { Router } from '@angular/router';
+import { DeudaCI } from '../../interfaces/DeudaCi.interface';
+import { Detalle } from '../../interfaces/Detalle.interface';
 
 @Component({
   selector: 'app-lista-deudas',
@@ -14,9 +16,11 @@ import { Router } from '@angular/router';
 export class ListaDeudasComponent implements OnInit {
 
   deudas!:Deuda[];
+  deudasci!:DeudaCI[];
   personas!:Persona[];
   ciForm: FormGroup;
   detalleDeuda!:DetalleDeuda[];
+  detalleDeudaConcepto!:Detalle[];
   constructor(private apiRestService: ApiRestService,private formBuilder:FormBuilder,private router: Router) { 
     this.ciForm = this.formBuilder.group({
       ci: ['',[Validators.required]]
@@ -27,9 +31,14 @@ export class ListaDeudasComponent implements OnInit {
 
   }
   getDetalles(id:number){
-    this.detalleDeuda = [];
-    this.apiRestService.getDetalleDeuda(id).subscribe(detalles => {
-      this.detalleDeuda = detalles;
+    // this.detalleDeuda = [];
+    // this.apiRestService.getDetalleDeuda(id).subscribe(detalles => {
+    //   this.detalleDeuda = detalles;
+    // })
+
+    this.detalleDeudaConcepto = [];
+    this.apiRestService.getDetalleDeudaConcepto(id).subscribe(d => {
+      this.detalleDeudaConcepto = d;
     })
   }
   pagar(persona_id:number,deuda_id:number,monto:number){
@@ -68,6 +77,16 @@ export class ListaDeudasComponent implements OnInit {
         console.log("Formulario Invalido");
       }
   }
+  buscarDeudaPorCi(){
+    if (this.ciForm.valid) {
+      this.apiRestService.deudaPorCi(this.ciForm.value.ci).subscribe(response => {
+        this.deudasci = response;
+        console.log(this.deudasci);
+      })
+    }
+  }
+
+
   formatDate(date:Date) {
     let d = new Date(date),
         month = '' + (d.getMonth() + 1),
