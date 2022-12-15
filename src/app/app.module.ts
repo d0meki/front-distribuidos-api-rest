@@ -8,12 +8,14 @@ import { HttpClientModule } from '@angular/common/http';
 import { ErrorPageComponent } from './shared/error-page/error-page.component';
 import { GoComponent } from './go/go.component';
 import { ReactiveFormsModule } from '@angular/forms';
+import { LoginComponent } from './shared/login/login.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     ErrorPageComponent,
-    GoComponent
+    GoComponent,
+    LoginComponent
   ],
   imports: [
     BrowserModule,

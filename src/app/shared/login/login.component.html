@@ -1,0 +1,40 @@
+<div class="wrapper fadeInDown">
+  <div id="formContent">
+    <!-- Tabs Titles -->
+    <h2 class="active">Sign In</h2>
+    <h2 class="inactive underlineHover">Sign Up</h2>
+
+    <!-- Icon -->
+
+    <div class="fadeIn first grid justify-items-center">
+      <img
+        src="https://cdn.pixabay.com/photo/2016/06/13/15/07/presentation-1454403_960_720.png"
+        id="icon"
+        alt="User Icon"
+      />
+    </div>
+
+    <!-- Login Form -->
+    <form>
+      <!-- <input type="text" id="login" class="fadeIn second" name="login" placeholder="login"> -->
+      <div>
+        <input
+          type="password"
+          id="password"
+          class="fadeIn third"
+          placeholder="password"
+        />
+      </div>
+      
+    </form>
+        <div>
+            <button class="btn btn-active btn-primary btn-wide mb-2" [routerLink]="['/deudas']">Log In</button>
+        <!-- <input type="submit" class="fadeIn fourth" value="Log In" [routerLink]="['/deudas']" style="cursor:pointer;"/> -->
+      </div>
+
+    <!-- Remind Passowrd -->
+    <div id="formFooter">
+      <a class="underlineHover" href="#">Forgot Password?</a>
+    </div>
+  </div>
+</div>
