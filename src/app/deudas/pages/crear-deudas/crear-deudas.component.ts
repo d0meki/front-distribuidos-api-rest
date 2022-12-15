@@ -52,6 +52,7 @@ export class CrearDeudasComponent implements OnInit {
     })
   }
   registrarDeuda() {
+    console.log("entra al metodo");
     if (this.deudaForm.valid) {
       this.deudaForm.value.total = this.totalDeuda();
 

@@ -1,14 +1,18 @@
 <!-- The button to open modal -->
-<label for="my-modal-4" class="btn">Nueva Deuda</label>
+<!-- <label for="my-modal-4" class="btn">Nueva Deuda</label> -->
+<!-- <a href="#my-modal-2" class="btn">Nueva Deuda</a> -->
+<label for="my-modal" class="btn">Nueva Deuda</label>
 <button (click)="getDeudas()" class="btn btn-success ml-2">
   Ver Todas las Deudas
 </button>
 
 <!-- Put this part before </body> tag -->
-<input type="checkbox" id="my-modal-4" class="modal-toggle" />
+<input type="checkbox" id="my-modal" class="modal-toggle" />
 <label for="my-modal-4" class="modal cursor-pointer">
   <div class="modal-box">
     <h3 class="font-bold text-lg">Deuda!</h3>
+    <!--  [formGroup]="deudaForm"
+      (ngSubmit)="registrarDeuda()" -->
     <form
       class="bg-white shadow-md rounded px-8 pt-6 pb-8 mb-4"
       [formGroup]="deudaForm"
@@ -65,9 +69,14 @@
         <i class="fa-solid fa-plus"></i> detalle
       </button>
       <div class="form-grid" formArrayName="detalle">
-        <div class="mb-4" *ngFor="let det of getCtrl('detalle',deudaForm)?.controls;index as i">
-         
-          <div class="grid grid-cols-2 gap-2" [formGroupName]="i" >
+        <div
+          class="mb-4"
+          *ngFor="
+            let det of getCtrl('detalle', deudaForm)?.controls;
+            index as i
+          "
+        >
+          <div class="grid grid-cols-2 gap-2" [formGroupName]="i">
             <div>
               <input
                 class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
@@ -87,14 +96,15 @@
           </div>
         </div>
       </div>
-      
-      <div class="flex items-center justify-between">
+
+      <div class="flex items-center justify-between modal-action">
         <button
           class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline modal-action"
           type="submit"
         >
-          Registrar
+          <label for="my-modal">Registrar</label>
         </button>
+        <!-- <label type="submit" for="my-modal">Registrar</label> -->
       </div>
     </form>
   </div>

@@ -14,11 +14,15 @@ import { PagoDeuda } from '../interfaces/PagoDeuda.interface';
 export class ApiRestService {
   private url: string = 'http://localhost:8080/'
   private personas: Persona[];
+  private deudas: Deuda[];
   private personas$: Subject<Persona[]>;
+  private deudas$: Subject<Deuda[]>;
 
   constructor(private http: HttpClient) {
     this.personas = [];
+    this.deudas = []
     this.personas$ = new Subject();
+    this.deudas$ = new Subject();
   }
 
   registrarPersona(persona: Persona): Observable<Persona> {
